@@ -24,6 +24,8 @@ class GoogleVisualizationTagLib {
     static final PLUGIN_NAME = 'google-visualization'
     static final VISUALIZATION_JAVASCRIPT_TEMPLATE = '/visualization_javascript'
     final BASIC_ATTRIBUTES = ['name', 'elementId', 'dynamicLoading', 'language', 'columns', 'data'] as Set
+	
+	private static final FORMATTERS_ATTRIBUTE = 'formatters'
 
     def pieChart = { attrs, body ->
         validateAndRender(attrs, GoogleVisualization.PIE_CHART)
@@ -54,7 +56,7 @@ class GoogleVisualizationTagLib {
     }
 
     def table = { attrs, body ->
-        validateAndRender(attrs, GoogleVisualization.TABLE, ['formatters'])
+        validateAndRender(attrs, GoogleVisualization.TABLE, [FORMATTERS_ATTRIBUTE])
     }
 
     def map = { attrs, body ->
@@ -98,7 +100,7 @@ class GoogleVisualizationTagLib {
     }
 
     def lineCoreChart = { attrs, body ->
-        validateAndRender(attrs, GoogleVisualization.LINE_CORE_CHART)
+        validateAndRender(attrs, GoogleVisualization.LINE_CORE_CHART, [FORMATTERS_ATTRIBUTE])
     }
 
     def scatterCoreChart = { attrs, body ->
