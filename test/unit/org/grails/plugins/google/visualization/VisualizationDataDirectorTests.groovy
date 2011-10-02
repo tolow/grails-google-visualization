@@ -54,7 +54,8 @@ class VisualizationDataDirectorTests extends GrailsUnitTestCase {
         assertEquals "['Commute', 2]", visualizationDataDirector.getVisualizationData().rows.get(2).toString()
         assertEquals "['Watch TV', 2]", visualizationDataDirector.getVisualizationData().rows.get(3).toString()
         assertEquals "['Sleep', 7]", visualizationDataDirector.getVisualizationData().rows.get(4).toString()
-        assertEquals 1, visualizationDataDirector.getVisualizationData().events.size()
-        assertEquals 'selectHandler', visualizationDataDirector.getVisualizationData().events['select'].toString()
+        assertEquals 0, visualizationDataDirector.getVisualizationData().beforeDrawEvents.size()
+        assertEquals 1, visualizationDataDirector.getVisualizationData().afterDrawEvents.size()
+        assertEquals 'selectHandler', visualizationDataDirector.getVisualizationData().afterDrawEvents['select'].toString()
     }
 }
