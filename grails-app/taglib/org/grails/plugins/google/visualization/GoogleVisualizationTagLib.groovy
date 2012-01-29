@@ -27,6 +27,10 @@ class GoogleVisualizationTagLib {
 	
 	private static final FORMATTERS_ATTRIBUTE = 'formatters'
 
+    def apiImport = { attrs, body ->
+        out << '<script type="text/javascript" src="http://www.google.com/jsapi"></script>'
+    }
+
     def pieChart = { attrs, body ->
         validateAndRender(attrs, GoogleVisualization.PIE_CHART)
     }
