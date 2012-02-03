@@ -1,3 +1,4 @@
+<%@ page defaultCodec="javascript" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <g:set var="functionName" value="draw${StringUtils.capitalize(visualizationData.name)}"/>
 <script type="text/javascript">

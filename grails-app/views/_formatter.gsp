@@ -1,3 +1,4 @@
+<%@ page defaultCodec="javascript" %>
 <%@ page import="org.grails.plugins.google.visualization.formatter.ColorFormatter; org.grails.plugins.google.visualization.formatter.PatternFormatter" %>
 
 <g:each var="formatter" in="${visualizationData.formatters}" status="i">
