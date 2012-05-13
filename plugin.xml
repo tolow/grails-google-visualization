@@ -2,10 +2,13 @@
   <author>Benjamin Muschko</author>
   <authorEmail>benjamin.muschko@gmail.com</authorEmail>
   <title>Google Visualization API Plugin</title>
-  <description>This is a plugin for Google Visualization API.</description>
+  <description>\
+This is a plugin for Google Visualization API. 
+</description>
   <documentation>http://www.grails.org/plugin/google-visualization</documentation>
   <type>GoogleVisualizationGrailsPlugin</type>
   <resources>
+    <resource>UrlMappings</resource>
     <resource>org.grails.plugins.google.visualization.GoogleVisualizationTagLib</resource>
   </resources>
   <repositories>
@@ -13,9 +16,10 @@
     <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
     <repository name='http://grails.org/plugins' url='http://grails.org/plugins' />
     <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
-  </repositories>
-  <dependencies />
-  <plugins />
-  <runtimePluginRequirements />
+  <dependencies>
+    <resolvers>
+      <resolver type='grailsPlugins' name='grailsPlugins' />
+    </resolvers>
+  </dependencies>
   <behavior />
 </plugin>
