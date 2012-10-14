@@ -11,7 +11,7 @@ import grails.test.mixin.web.GroovyPageUnitTestMixin
  */
 @TestMixin(GroovyPageUnitTestMixin)
 class GoogleVisualizationTagLib2Tests {
-
+	
     void setUp() {
     }
 
@@ -23,40 +23,61 @@ class GoogleVisualizationTagLib2Tests {
 		def columns = [['string', 'Country'], ['number', 'Number']]
 		def data = [['US', 4357], ['DE', 5201]]
 		def colors = ['ffff00']
-		assertOutputEquals ("\n"
-				+ "\n"
-				+ "\n"
-				+ "<script type=\"text/javascript\">\n"
-				+ "    google.load('visualization', '1', {'packages': ['intensitymap']});\n"
-				+ "    google.setOnLoadCallback(drawMap);\n"
-				+ "    \n"
-				+ "    function drawMap() {\n"
-				+ "        map_data = new google.visualization.DataTable();\n"
-				+ "        \n"
-				+ "        map_data.addColumn('string', 'Country');\n"
-				+ "        \n"
-				+ "        map_data.addColumn('number', 'Number');\n"
-				+ "        \n"
-				+ "        \n"
-				+ "        map_data.addRow(['US', 4357]);\n"
-				+ "        \n"
-				+ "        map_data.addRow(['DE', 5201]);\n"
-				+ "        \n"
-				+ "      \n"
-				+ "        map = new google.visualization.IntensityMap(document.getElementById('map'));\n"
-				+ "\n"
-				+ "        \n"
-				+ "\n"
-				+ "\n"
-				+ "\n"
-				+ "        \n"
-				+ "        map.draw(map_data, {colors: ['ffff00'], height: 150, width: 150});\n"
-				+ "\n"
-				+ "        \n"
-				+ "    }\n"
-				+ "</script>"
+		def WHITE_SPACES = "\\s*"
+		//def regex = "(?s)(.*)"
+		def regex = "(?s)" + WHITE_SPACES
+		regex += "<script type=\"text/javascript\">" + WHITE_SPACES
+		regex += "google\\.load\\(\\'visualization\\'\\, \\'1\\'\\, \\{\\'packages\\'\\: \\[\\'intensitymap\\'\\]\\}\\);" + WHITE_SPACES
+		regex += "google\\.setOnLoadCallback\\(drawMap\\);" + WHITE_SPACES
+		regex += "function drawMap\\(\\) \\{" + WHITE_SPACES
+		regex += "map_data = new google\\.visualization\\.DataTable\\(\\);" + WHITE_SPACES
+		regex += "map_data\\.addColumn\\(\\'string\\'\\, \\'Country\\'\\);" + WHITE_SPACES
+		regex += "map_data\\.addColumn\\(\\'number\\'\\, \\'Number\\'\\);" + WHITE_SPACES
+		regex += "map_data\\.addRow\\(\\[\\'US\\'\\, 4357\\]\\);" + WHITE_SPACES
+		regex += "map_data\\.addRow\\(\\[\\'DE\\'\\, 5201\\]\\);" + WHITE_SPACES
+		regex += "map = new google\\.visualization\\.IntensityMap\\(document\\.getElementById\\(\\'map\\'\\)\\);" + WHITE_SPACES
+		regex += "map\\.draw\\(map_data\\, \\{colors\\: \\[\\'ffff00\\'\\]\\, height\\: 150\\, width\\: 150\\}\\);" + WHITE_SPACES
+		regex += "\\}" + WHITE_SPACES
+		regex += "</script>" + WHITE_SPACES
+		assertOutputMatches (~regex
 				, '<gvisualization:intensityMap name="map" elementId="map" columns="${columns}" data="${data}" colors="${colors}" height="${150}" width="${150}"/>'
 				, [columns : columns, data : data, colors : colors]
 			)
+//		def NEW_LINE = System.getProperty("line.separator")
+//		assertOutputEquals (NEW_LINE
+//				+ NEW_LINE
+//				+ NEW_LINE
+//				+ "<script type=\"text/javascript\">" + NEW_LINE
+//				+ "    google.load('visualization', '1', {'packages': ['intensitymap']});" + NEW_LINE
+//				+ "    google.setOnLoadCallback(drawMap);" + NEW_LINE
+//				+ "    " + NEW_LINE
+//				+ "    function drawMap() {" + NEW_LINE
+//				+ "        map_data = new google.visualization.DataTable();" + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        map_data.addColumn('string', 'Country');" + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        map_data.addColumn('number', 'Number');" + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        map_data.addRow(['US', 4357]);" + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        map_data.addRow(['DE', 5201]);" + NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "      " + NEW_LINE
+//				+ "        map = new google.visualization.IntensityMap(document.getElementById('map'));" + NEW_LINE
+//				+  NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "" + NEW_LINE
+//				+  NEW_LINE
+//				+ NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "        map.draw(map_data, {colors: ['ffff00'], height: 150, width: 150});" + NEW_LINE
+//				+ NEW_LINE
+//				+ "        " + NEW_LINE
+//				+ "    }" + NEW_LINE
+//				+ "</script>"
+//				, '<gvisualization:intensityMap name="map" elementId="map" columns="${columns}" data="${data}" colors="${colors}" height="${150}" width="${150}"/>'
+//				, [columns : columns, data : data, colors : colors]
+//			)
     }
 }
