@@ -1,9 +1,11 @@
 out
 target
-stacktrace.log
+.log
 *.iml
 *.ipr
 *.iws
 .idea
-/.link_to_grails_plugins
-/grails-google-visualization-0.3.zip
+target/
+plugin.xml
+.settings/
+web-app/
